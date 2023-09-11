@@ -26,17 +26,19 @@ int OnInit() {
 }
 
 void OnTick() {
-
-   if(OrdersTotal()>0) return; // do not trade if there is an already opened order
+   if(trade.TradesTotal() > 0) return;
+   // if(OrdersTotal()>0) return; // do not trade if there is an already opened order
    double currentRSI = iRSI(Symbol(), 0, RSI_Period, PRICE_CLOSE, 0);
    
    // Check for RSI cross over oversold or overbought levels
    if (lastRSI < Oversold_Level && currentRSI >= Oversold_Level) {
       // Buy order
       // OrderSend(Symbol(), OP_BUY, LotSize, Ask, 3, Ask-StopLoss_Points*_Point, Ask+TakeProfit_Points*_Point, "RSI Cross Over Buy", 0, clrRed);
+      trade.Buy(Symbol(), LotSize, StopLoss_Points, TakeProfit_Points, "RSI Cross Over Buy");
    } else if (lastRSI > Overbought_Level && currentRSI <= Overbought_Level) {
       // Sell order
       // OrderSend(Symbol(), OP_SELL, LotSize, Bid, 3, Bid+StopLoss_Points*_Point, Bid-TakeProfit_Points*_Point, "RSI Cross Over Sell", 0, clrBlue);
+      trade.Sell(Symbol(), LotSize, StopLoss_Points, TakeProfit_Points, "RSI Cross Over Sell");
    }
    
    lastRSI = currentRSI;

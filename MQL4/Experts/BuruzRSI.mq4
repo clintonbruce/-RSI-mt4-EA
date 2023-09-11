@@ -3,8 +3,6 @@
 //|                   Copyright 2005-2014, MetaQuotes Software Corp. |
 //|                                              http://www.mql4.com |
 //+------------------------------------------------------------------+
-#define DEBUG
-
 #include "..\\Include\\trade.mqh"
 
 // Input Parameters
@@ -43,6 +41,3 @@ void OnTick() {
    
    lastRSI = currentRSI;
 }
-
-
-#undef DEBUG

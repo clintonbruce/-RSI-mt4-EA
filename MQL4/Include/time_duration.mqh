@@ -9,7 +9,7 @@ public:
     }
 private:
     void ShowResult() const{
-        Print(_fn_name+"() Timer: " + DoubleToString((_end - _start)/1000000, 2) + " sec.");
+        Print(_fn_name+" Timer: " + DoubleToString((_end - _start)/1000000, 2) + " sec.");
     }
 
 private:
@@ -18,3 +18,4 @@ private:
 };
 
 #define TIMER TimeDuration timer##__LINE__(__FUNCTION__);
+#define TIMER_HINT(hint) TimeDuration timer##__LINE__(hint);
